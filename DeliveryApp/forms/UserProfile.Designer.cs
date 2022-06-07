@@ -1,4 +1,4 @@
-﻿namespace PracticeApp.forms
+﻿namespace DeliveryApp
 {
     partial class UserProfile
     {

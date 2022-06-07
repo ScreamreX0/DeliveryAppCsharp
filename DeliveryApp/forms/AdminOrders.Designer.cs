@@ -1,4 +1,4 @@
-﻿namespace DeliveryApp.forms
+﻿namespace DeliveryApp
 {
     partial class AdminOrders
     {
@@ -29,8 +29,6 @@
         private void InitializeComponent()
         {
             this.filterButton = new System.Windows.Forms.Button();
-            this.label10 = new System.Windows.Forms.Label();
-            this.checkBoxTotalSum = new System.Windows.Forms.CheckBox();
             this.label9 = new System.Windows.Forms.Label();
             this.checkBoxPaymentMethod = new System.Windows.Forms.CheckBox();
             this.checkBoxComment = new System.Windows.Forms.CheckBox();
@@ -49,7 +47,6 @@
             this.OrderToDatePicker = new System.Windows.Forms.DateTimePicker();
             this.OrderFromDatePicker = new System.Windows.Forms.DateTimePicker();
             this.PaymentMethodComboBox = new System.Windows.Forms.ComboBox();
-            this.TotalSumTextBox = new System.Windows.Forms.TextBox();
             this.NameTextBox = new System.Windows.Forms.TextBox();
             this.IdTextBox = new System.Windows.Forms.TextBox();
             this.CommentTextBox = new System.Windows.Forms.TextBox();
@@ -70,26 +67,7 @@
             this.filterButton.TabIndex = 77;
             this.filterButton.Text = "Фильтровать";
             this.filterButton.UseVisualStyleBackColor = false;
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-            this.label10.ForeColor = System.Drawing.Color.Gainsboro;
-            this.label10.Location = new System.Drawing.Point(796, 120);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(80, 13);
-            this.label10.TabIndex = 76;
-            this.label10.Text = "Сумма заказа";
-            // 
-            // checkBoxTotalSum
-            // 
-            this.checkBoxTotalSum.AutoSize = true;
-            this.checkBoxTotalSum.Location = new System.Drawing.Point(775, 142);
-            this.checkBoxTotalSum.Name = "checkBoxTotalSum";
-            this.checkBoxTotalSum.Size = new System.Drawing.Size(15, 14);
-            this.checkBoxTotalSum.TabIndex = 75;
-            this.checkBoxTotalSum.UseVisualStyleBackColor = true;
+            this.filterButton.Click += new System.EventHandler(this.filterButton_Click);
             // 
             // label9
             // 
@@ -109,6 +87,7 @@
             this.checkBoxPaymentMethod.Size = new System.Drawing.Size(15, 14);
             this.checkBoxPaymentMethod.TabIndex = 73;
             this.checkBoxPaymentMethod.UseVisualStyleBackColor = true;
+            this.checkBoxPaymentMethod.Click += new System.EventHandler(this.checkBoxPaymentMethod_CheckedChanged);
             // 
             // checkBoxComment
             // 
@@ -118,6 +97,7 @@
             this.checkBoxComment.Size = new System.Drawing.Size(15, 14);
             this.checkBoxComment.TabIndex = 72;
             this.checkBoxComment.UseVisualStyleBackColor = true;
+            this.checkBoxComment.Click += new System.EventHandler(this.checkBoxComment_CheckedChanged);
             // 
             // label8
             // 
@@ -148,6 +128,7 @@
             this.checkBoxCustomerName.Size = new System.Drawing.Size(15, 14);
             this.checkBoxCustomerName.TabIndex = 69;
             this.checkBoxCustomerName.UseVisualStyleBackColor = true;
+            this.checkBoxCustomerName.Click += new System.EventHandler(this.checkBoxCustomerName_CheckedChanged);
             // 
             // checkBoxCustomerLastName
             // 
@@ -157,6 +138,7 @@
             this.checkBoxCustomerLastName.Size = new System.Drawing.Size(15, 14);
             this.checkBoxCustomerLastName.TabIndex = 68;
             this.checkBoxCustomerLastName.UseVisualStyleBackColor = true;
+            this.checkBoxCustomerLastName.Click += new System.EventHandler(this.checkBoxCustomerLastName_CheckedChanged);
             // 
             // label7
             // 
@@ -186,6 +168,7 @@
             this.checkBoxId.Size = new System.Drawing.Size(15, 14);
             this.checkBoxId.TabIndex = 65;
             this.checkBoxId.UseVisualStyleBackColor = true;
+            this.checkBoxId.Click += new System.EventHandler(this.checkBoxId_CheckedChanged);
             // 
             // label4
             // 
@@ -225,6 +208,7 @@
             this.checkBoxOrderDate.Size = new System.Drawing.Size(15, 14);
             this.checkBoxOrderDate.TabIndex = 61;
             this.checkBoxOrderDate.UseVisualStyleBackColor = true;
+            this.checkBoxOrderDate.Click += new System.EventHandler(this.checkBoxOrderDate_CheckedChanged);
             // 
             // LastNameTextBox
             // 
@@ -262,13 +246,6 @@
             this.PaymentMethodComboBox.Name = "PaymentMethodComboBox";
             this.PaymentMethodComboBox.Size = new System.Drawing.Size(100, 21);
             this.PaymentMethodComboBox.TabIndex = 57;
-            // 
-            // TotalSumTextBox
-            // 
-            this.TotalSumTextBox.Location = new System.Drawing.Point(796, 139);
-            this.TotalSumTextBox.Name = "TotalSumTextBox";
-            this.TotalSumTextBox.Size = new System.Drawing.Size(99, 20);
-            this.TotalSumTextBox.TabIndex = 56;
             // 
             // NameTextBox
             // 
@@ -314,6 +291,7 @@
             this.label2.Size = new System.Drawing.Size(37, 39);
             this.label2.TabIndex = 51;
             this.label2.Text = "<";
+            this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
             // AdminOrders
             // 
@@ -322,8 +300,6 @@
             this.BackColor = System.Drawing.Color.SlateBlue;
             this.ClientSize = new System.Drawing.Size(943, 533);
             this.Controls.Add(this.filterButton);
-            this.Controls.Add(this.label10);
-            this.Controls.Add(this.checkBoxTotalSum);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.checkBoxPaymentMethod);
             this.Controls.Add(this.checkBoxComment);
@@ -342,7 +318,6 @@
             this.Controls.Add(this.OrderToDatePicker);
             this.Controls.Add(this.OrderFromDatePicker);
             this.Controls.Add(this.PaymentMethodComboBox);
-            this.Controls.Add(this.TotalSumTextBox);
             this.Controls.Add(this.NameTextBox);
             this.Controls.Add(this.IdTextBox);
             this.Controls.Add(this.CommentTextBox);
@@ -359,8 +334,6 @@
         #endregion
 
         private System.Windows.Forms.Button filterButton;
-        private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.CheckBox checkBoxTotalSum;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.CheckBox checkBoxPaymentMethod;
         private System.Windows.Forms.CheckBox checkBoxComment;
@@ -379,7 +352,6 @@
         private System.Windows.Forms.DateTimePicker OrderToDatePicker;
         private System.Windows.Forms.DateTimePicker OrderFromDatePicker;
         private System.Windows.Forms.ComboBox PaymentMethodComboBox;
-        private System.Windows.Forms.TextBox TotalSumTextBox;
         private System.Windows.Forms.TextBox NameTextBox;
         private System.Windows.Forms.TextBox IdTextBox;
         private System.Windows.Forms.TextBox CommentTextBox;

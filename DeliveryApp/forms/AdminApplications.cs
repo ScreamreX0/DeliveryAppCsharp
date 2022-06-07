@@ -8,43 +8,47 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace DeliveryApp.forms
+namespace DeliveryApp
 {
     public partial class AdminApplications : Form
     {
-        DataTable table = new DataTable();
-        DeliveryEntities deliveryEntities = new DeliveryEntities();
-        users user;
+        private DataTable _applicationTable = new DataTable();
+        private DeliveryEntities _deliveryEntities = Constants.deliveryModel;
+        private users _user;
         public AdminApplications(users user)
         {
             InitializeComponent();
 
-            this.user = user;
+            this._user = user;
 
-            dataGridView1.DefaultCellStyle.ForeColor = Color.Black;
+            init();
+        }
 
-            // Добавление колонок в таблицу
-            table.Columns.Add("Номер");
-            table.Columns.Add("Отправитель");
-            table.Columns.Add("Тип");
-            table.Columns.Add("Заявка");
+        private void init()
+        {
+            // application table
+            _applicationTable.Columns.Add("Номер");
+            _applicationTable.Columns.Add("Отправитель");
+            _applicationTable.Columns.Add("Тип");
+            _applicationTable.Columns.Add("Заявка");
 
-            // Добавление данных в таблицу
-            foreach (applications application in deliveryEntities.applications)
+            foreach (applications application in _deliveryEntities.applications)
             {
-                table.Rows.Add(application.id,
+                _applicationTable.Rows.Add(application.id,
                     application.users.login,
                     application.type,
                     application.text);
             }
 
-            dataGridView1.DataSource = table;
+            // data grid view
+            dataGridView1.DefaultCellStyle.ForeColor = Color.Black;
+            dataGridView1.DataSource = _applicationTable;
         }
 
         // admin menu open
         private void label2_Click(object sender, EventArgs e)
         {
-            FormsHelper.openForm(this, new AdminMenu(user));
+            FormsHelper.openForm(this, new AdminMenu(_user));
         }
     }
 }

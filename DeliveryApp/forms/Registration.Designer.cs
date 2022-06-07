@@ -1,4 +1,4 @@
-﻿namespace PracticeApp
+﻿namespace DeliveryApp
 {
     partial class Registration
     {

@@ -1,4 +1,4 @@
-﻿namespace DeliveryApp.forms
+﻿namespace DeliveryApp
 {
     partial class AdminEditMenu
     {
@@ -34,29 +34,25 @@
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.saveChangesButton = new System.Windows.Forms.Button();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.label2 = new System.Windows.Forms.Label();
-            this.deliveryDataSet = new DeliveryApp.DeliveryDataSet();
-            this.menuBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.menuTableAdapter = new DeliveryApp.DeliveryDataSetTableAdapters.menuTableAdapter();
             this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.confirmdateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ratingDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dishesBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.dishesTableAdapter = new DeliveryApp.DeliveryDataSetTableAdapters.dishesTableAdapter();
+            this.menuBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.deliveryDataSet = new DeliveryApp.DeliveryDataSet();
+            this.saveChangesButton = new System.Windows.Forms.Button();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.idDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.menuidDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.priceDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.photoDataGridViewImageColumn = new System.Windows.Forms.DataGridViewImageColumn();
             this.nameDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ratingDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dishesBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.label2 = new System.Windows.Forms.Label();
+            this.menuTableAdapter = new DeliveryApp.DeliveryDataSetTableAdapters.menuTableAdapter();
+            this.dishesTableAdapter = new DeliveryApp.DeliveryDataSetTableAdapters.dishesTableAdapter();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.deliveryDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.menuBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.deliveryDataSet)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dishesBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
@@ -65,7 +61,7 @@
             this.label3.AutoSize = true;
             this.label3.BackColor = System.Drawing.Color.SlateBlue;
             this.label3.ForeColor = System.Drawing.Color.Gainsboro;
-            this.label3.Location = new System.Drawing.Point(335, 72);
+            this.label3.Location = new System.Drawing.Point(441, 72);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(39, 13);
             this.label3.TabIndex = 40;
@@ -84,10 +80,11 @@
             // 
             // textBox2
             // 
-            this.textBox2.Location = new System.Drawing.Point(338, 91);
+            this.textBox2.Location = new System.Drawing.Point(444, 91);
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(151, 20);
             this.textBox2.TabIndex = 38;
+            this.textBox2.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
             // 
             // textBox1
             // 
@@ -95,6 +92,7 @@
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(163, 20);
             this.textBox1.TabIndex = 37;
+            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // dataGridView2
             // 
@@ -103,7 +101,6 @@
             this.dataGridView2.BackgroundColor = System.Drawing.SystemColors.ControlDark;
             this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView2.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Column1,
             this.idDataGridViewTextBoxColumn,
             this.nameDataGridViewTextBoxColumn,
             this.confirmdateDataGridViewTextBoxColumn,
@@ -111,15 +108,46 @@
             this.dataGridView2.DataSource = this.menuBindingSource;
             this.dataGridView2.Location = new System.Drawing.Point(65, 117);
             this.dataGridView2.Name = "dataGridView2";
-            this.dataGridView2.Size = new System.Drawing.Size(246, 246);
+            this.dataGridView2.Size = new System.Drawing.Size(373, 246);
             this.dataGridView2.TabIndex = 36;
+            this.dataGridView2.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView2_CellContentClick);
             // 
-            // Column1
+            // idDataGridViewTextBoxColumn
             // 
-            this.Column1.DataPropertyName = "id";
-            this.Column1.HeaderText = "Номер";
-            this.Column1.Name = "Column1";
-            this.Column1.ReadOnly = true;
+            this.idDataGridViewTextBoxColumn.DataPropertyName = "id";
+            this.idDataGridViewTextBoxColumn.HeaderText = "Номер";
+            this.idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
+            this.idDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // nameDataGridViewTextBoxColumn
+            // 
+            this.nameDataGridViewTextBoxColumn.DataPropertyName = "name";
+            this.nameDataGridViewTextBoxColumn.HeaderText = "Название";
+            this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
+            // 
+            // confirmdateDataGridViewTextBoxColumn
+            // 
+            this.confirmdateDataGridViewTextBoxColumn.DataPropertyName = "confirm_date";
+            this.confirmdateDataGridViewTextBoxColumn.HeaderText = "Дата утверждения";
+            this.confirmdateDataGridViewTextBoxColumn.Name = "confirmdateDataGridViewTextBoxColumn";
+            this.confirmdateDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // ratingDataGridViewTextBoxColumn
+            // 
+            this.ratingDataGridViewTextBoxColumn.DataPropertyName = "rating";
+            this.ratingDataGridViewTextBoxColumn.HeaderText = "Рейтинг";
+            this.ratingDataGridViewTextBoxColumn.Name = "ratingDataGridViewTextBoxColumn";
+            this.ratingDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // menuBindingSource
+            // 
+            this.menuBindingSource.DataMember = "menu";
+            this.menuBindingSource.DataSource = this.deliveryDataSet;
+            // 
+            // deliveryDataSet
+            // 
+            this.deliveryDataSet.DataSetName = "DeliveryDataSet";
+            this.deliveryDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // saveChangesButton
             // 
@@ -129,10 +157,11 @@
             this.saveChangesButton.ForeColor = System.Drawing.Color.Gainsboro;
             this.saveChangesButton.Location = new System.Drawing.Point(65, 369);
             this.saveChangesButton.Name = "saveChangesButton";
-            this.saveChangesButton.Size = new System.Drawing.Size(517, 54);
+            this.saveChangesButton.Size = new System.Drawing.Size(666, 54);
             this.saveChangesButton.TabIndex = 35;
             this.saveChangesButton.Text = "Сохранить изменения";
             this.saveChangesButton.UseVisualStyleBackColor = false;
+            this.saveChangesButton.Click += new System.EventHandler(this.saveChangesButton_Click);
             // 
             // dataGridView1
             // 
@@ -143,16 +172,37 @@
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.idDataGridViewTextBoxColumn1,
-            this.menuidDataGridViewTextBoxColumn,
             this.priceDataGridViewTextBoxColumn,
-            this.photoDataGridViewImageColumn,
-            this.nameDataGridViewTextBoxColumn1,
-            this.ratingDataGridViewTextBoxColumn1});
+            this.nameDataGridViewTextBoxColumn1});
             this.dataGridView1.DataSource = this.dishesBindingSource;
-            this.dataGridView1.Location = new System.Drawing.Point(338, 117);
+            this.dataGridView1.Location = new System.Drawing.Point(444, 117);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(244, 246);
+            this.dataGridView1.Size = new System.Drawing.Size(287, 246);
             this.dataGridView1.TabIndex = 34;
+            // 
+            // idDataGridViewTextBoxColumn1
+            // 
+            this.idDataGridViewTextBoxColumn1.DataPropertyName = "id";
+            this.idDataGridViewTextBoxColumn1.HeaderText = "Номер";
+            this.idDataGridViewTextBoxColumn1.Name = "idDataGridViewTextBoxColumn1";
+            this.idDataGridViewTextBoxColumn1.ReadOnly = true;
+            // 
+            // priceDataGridViewTextBoxColumn
+            // 
+            this.priceDataGridViewTextBoxColumn.DataPropertyName = "price";
+            this.priceDataGridViewTextBoxColumn.HeaderText = "Цена";
+            this.priceDataGridViewTextBoxColumn.Name = "priceDataGridViewTextBoxColumn";
+            // 
+            // nameDataGridViewTextBoxColumn1
+            // 
+            this.nameDataGridViewTextBoxColumn1.DataPropertyName = "name";
+            this.nameDataGridViewTextBoxColumn1.HeaderText = "Название";
+            this.nameDataGridViewTextBoxColumn1.Name = "nameDataGridViewTextBoxColumn1";
+            // 
+            // dishesBindingSource
+            // 
+            this.dishesBindingSource.DataMember = "dishes";
+            this.dishesBindingSource.DataSource = this.deliveryDataSet;
             // 
             // label2
             // 
@@ -165,98 +215,22 @@
             this.label2.Size = new System.Drawing.Size(37, 39);
             this.label2.TabIndex = 33;
             this.label2.Text = "<";
-            // 
-            // deliveryDataSet
-            // 
-            this.deliveryDataSet.DataSetName = "DeliveryDataSet";
-            this.deliveryDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // menuBindingSource
-            // 
-            this.menuBindingSource.DataMember = "menu";
-            this.menuBindingSource.DataSource = this.deliveryDataSet;
+            this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
             // menuTableAdapter
             // 
             this.menuTableAdapter.ClearBeforeFill = true;
             // 
-            // idDataGridViewTextBoxColumn
-            // 
-            this.idDataGridViewTextBoxColumn.DataPropertyName = "id";
-            this.idDataGridViewTextBoxColumn.HeaderText = "id";
-            this.idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
-            this.idDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // nameDataGridViewTextBoxColumn
-            // 
-            this.nameDataGridViewTextBoxColumn.DataPropertyName = "name";
-            this.nameDataGridViewTextBoxColumn.HeaderText = "name";
-            this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
-            // 
-            // confirmdateDataGridViewTextBoxColumn
-            // 
-            this.confirmdateDataGridViewTextBoxColumn.DataPropertyName = "confirm_date";
-            this.confirmdateDataGridViewTextBoxColumn.HeaderText = "confirm_date";
-            this.confirmdateDataGridViewTextBoxColumn.Name = "confirmdateDataGridViewTextBoxColumn";
-            // 
-            // ratingDataGridViewTextBoxColumn
-            // 
-            this.ratingDataGridViewTextBoxColumn.DataPropertyName = "rating";
-            this.ratingDataGridViewTextBoxColumn.HeaderText = "rating";
-            this.ratingDataGridViewTextBoxColumn.Name = "ratingDataGridViewTextBoxColumn";
-            // 
-            // dishesBindingSource
-            // 
-            this.dishesBindingSource.DataMember = "dishes";
-            this.dishesBindingSource.DataSource = this.deliveryDataSet;
-            // 
             // dishesTableAdapter
             // 
             this.dishesTableAdapter.ClearBeforeFill = true;
-            // 
-            // idDataGridViewTextBoxColumn1
-            // 
-            this.idDataGridViewTextBoxColumn1.DataPropertyName = "id";
-            this.idDataGridViewTextBoxColumn1.HeaderText = "id";
-            this.idDataGridViewTextBoxColumn1.Name = "idDataGridViewTextBoxColumn1";
-            this.idDataGridViewTextBoxColumn1.ReadOnly = true;
-            // 
-            // menuidDataGridViewTextBoxColumn
-            // 
-            this.menuidDataGridViewTextBoxColumn.DataPropertyName = "menu_id";
-            this.menuidDataGridViewTextBoxColumn.HeaderText = "menu_id";
-            this.menuidDataGridViewTextBoxColumn.Name = "menuidDataGridViewTextBoxColumn";
-            // 
-            // priceDataGridViewTextBoxColumn
-            // 
-            this.priceDataGridViewTextBoxColumn.DataPropertyName = "price";
-            this.priceDataGridViewTextBoxColumn.HeaderText = "price";
-            this.priceDataGridViewTextBoxColumn.Name = "priceDataGridViewTextBoxColumn";
-            // 
-            // photoDataGridViewImageColumn
-            // 
-            this.photoDataGridViewImageColumn.DataPropertyName = "photo";
-            this.photoDataGridViewImageColumn.HeaderText = "photo";
-            this.photoDataGridViewImageColumn.Name = "photoDataGridViewImageColumn";
-            // 
-            // nameDataGridViewTextBoxColumn1
-            // 
-            this.nameDataGridViewTextBoxColumn1.DataPropertyName = "name";
-            this.nameDataGridViewTextBoxColumn1.HeaderText = "name";
-            this.nameDataGridViewTextBoxColumn1.Name = "nameDataGridViewTextBoxColumn1";
-            // 
-            // ratingDataGridViewTextBoxColumn1
-            // 
-            this.ratingDataGridViewTextBoxColumn1.DataPropertyName = "rating";
-            this.ratingDataGridViewTextBoxColumn1.HeaderText = "rating";
-            this.ratingDataGridViewTextBoxColumn1.Name = "ratingDataGridViewTextBoxColumn1";
             // 
             // AdminEditMenu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.SlateBlue;
-            this.ClientSize = new System.Drawing.Size(641, 450);
+            this.ClientSize = new System.Drawing.Size(814, 450);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.textBox2);
@@ -269,9 +243,9 @@
             this.Text = "Practice app (Редактирование меню)";
             this.Load += new System.EventHandler(this.AdminEditMenu_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.deliveryDataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.menuBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.deliveryDataSet)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dishesBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -285,24 +259,21 @@
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.DataGridView dataGridView2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
         private System.Windows.Forms.Button saveChangesButton;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Label label2;
         private DeliveryDataSet deliveryDataSet;
         private System.Windows.Forms.BindingSource menuBindingSource;
         private DeliveryDataSetTableAdapters.menuTableAdapter menuTableAdapter;
+        private System.Windows.Forms.BindingSource dishesBindingSource;
+        private DeliveryDataSetTableAdapters.dishesTableAdapter dishesTableAdapter;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ratingDataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn idDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn confirmdateDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn ratingDataGridViewTextBoxColumn;
-        private System.Windows.Forms.BindingSource dishesBindingSource;
-        private DeliveryDataSetTableAdapters.dishesTableAdapter dishesTableAdapter;
         private System.Windows.Forms.DataGridViewTextBoxColumn idDataGridViewTextBoxColumn1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn menuidDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn priceDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewImageColumn photoDataGridViewImageColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ratingDataGridViewTextBoxColumn1;
     }
 }

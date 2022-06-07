@@ -1,6 +1,4 @@
 ﻿using DeliveryApp;
-using DeliveryApp.forms;
-using PracticeApp.forms;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -12,7 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace PracticeApp
+namespace DeliveryApp
 {
     public partial class Auth : Form
     {

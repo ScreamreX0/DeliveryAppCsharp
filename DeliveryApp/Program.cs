@@ -1,6 +1,4 @@
 ﻿using DeliveryApp;
-using DeliveryApp.forms;
-using PracticeApp;
 using System;
 using System.Collections.Generic;
 using System.Linq;

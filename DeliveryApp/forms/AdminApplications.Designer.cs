@@ -1,4 +1,4 @@
-﻿namespace DeliveryApp.forms
+﻿namespace DeliveryApp
 {
     partial class AdminApplications
     {
@@ -44,6 +44,7 @@
             this.label2.Size = new System.Drawing.Size(37, 39);
             this.label2.TabIndex = 20;
             this.label2.Text = "<";
+            this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
             // dataGridView1
             // 

@@ -1,5 +1,4 @@
 ﻿using DeliveryApp;
-using DeliveryApp.forms;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -12,7 +11,7 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace PracticeApp
+namespace DeliveryApp
 {
     public partial class Registration : Form
     {

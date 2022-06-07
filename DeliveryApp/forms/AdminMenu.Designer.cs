@@ -1,4 +1,4 @@
-﻿namespace DeliveryApp.forms
+﻿namespace DeliveryApp
 {
     partial class AdminMenu
     {
@@ -49,6 +49,7 @@
             this.button1.TabIndex = 14;
             this.button1.Text = "Выйти";
             this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // label1
             // 
@@ -73,6 +74,7 @@
             this.button4.TabIndex = 11;
             this.button4.Text = "Список заказов";
             this.button4.UseVisualStyleBackColor = false;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
             // button3
             // 
@@ -86,6 +88,7 @@
             this.button3.TabIndex = 10;
             this.button3.Text = "Редактировать меню";
             this.button3.UseVisualStyleBackColor = false;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // button2
             // 
@@ -99,6 +102,7 @@
             this.button2.TabIndex = 9;
             this.button2.Text = "Заявки";
             this.button2.UseVisualStyleBackColor = false;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // pictureBox1
             // 
@@ -111,6 +115,7 @@
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 12;
             this.pictureBox1.TabStop = false;
+            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click_1);
             // 
             // AdminMenu
             // 

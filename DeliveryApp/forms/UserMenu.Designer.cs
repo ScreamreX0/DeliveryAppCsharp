@@ -1,4 +1,4 @@
-﻿namespace DeliveryApp.forms
+﻿namespace DeliveryApp
 {
     partial class UserMenu
     {
