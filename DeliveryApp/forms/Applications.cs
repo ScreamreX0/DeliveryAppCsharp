@@ -55,7 +55,8 @@ namespace DeliveryApp
             {
                 sender = _user.id,
                 type = type,
-                text = textBox1.Text
+                text = textBox1.Text,
+                date = DateTime.Now
             };
 
             _deliveryEntities.applications.Add(application);

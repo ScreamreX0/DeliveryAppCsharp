@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -25,8 +26,11 @@ namespace DeliveryApp
 
         private void init()
         {
-            // Установка заголовка страницы
+            // forme title
             this.Text = "DeliveryApp (Администратор " + _user.first_name + " " + _user.last_name + ")";
+
+            // picture box            
+            pictureBox2.Image = Image.FromFile(Path.Combine("..\\..\\assets\\graph.png"));
 
         }
 
@@ -58,6 +62,11 @@ namespace DeliveryApp
         private void button1_Click(object sender, EventArgs e)
         {
             FormsHelper.openForm(this, new Auth());
+        }
+
+        private void pictureBox2_Click(object sender, EventArgs e)
+        {
+            FormsHelper.openForm(this, new AdminChartComplaint(_user));
         }
     }
 }

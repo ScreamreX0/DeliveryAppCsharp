@@ -20,6 +20,7 @@
           <Property Name="sender" Type="int" />
           <Property Name="type" Type="int" />
           <Property Name="text" Type="varchar" MaxLength="255" />
+          <Property Name="date" Type="datetime" />
         </EntityType>
         <EntityType Name="coupon_statuses">
           <Key>
@@ -697,6 +698,7 @@
           <Property Name="text" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="application_types" Relationship="Self.FK__applicatio__type__40058253" FromRole="applications" ToRole="application_types" />
           <NavigationProperty Name="users" Relationship="Self.FK__applicati__sende__3C34F16F" FromRole="applications" ToRole="users" />
+          <Property Name="date" Type="DateTime" Precision="3" />
         </EntityType>
         <EntityType Name="coupon_statuses">
           <Key>
@@ -1428,6 +1430,7 @@
           <EntitySetMapping Name="applications">
             <EntityTypeMapping TypeName="DeliveryModel.applications">
               <MappingFragment StoreEntitySet="applications">
+                <ScalarProperty Name="date" ColumnName="date" />
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="sender" ColumnName="sender" />
                 <ScalarProperty Name="type" ColumnName="type" />

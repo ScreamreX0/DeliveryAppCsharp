@@ -55,7 +55,7 @@
             this.themeComboBox.FormattingEnabled = true;
             this.themeComboBox.Items.AddRange(new object[] {
             "Заявка на трудоустройство",
-            "Отзыв"});
+            "Жалоба"});
             this.themeComboBox.Location = new System.Drawing.Point(104, 58);
             this.themeComboBox.Name = "themeComboBox";
             this.themeComboBox.Size = new System.Drawing.Size(242, 21);

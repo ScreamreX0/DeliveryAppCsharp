@@ -18,6 +18,7 @@ namespace DeliveryApp
         public Nullable<int> sender { get; set; }
         public Nullable<int> type { get; set; }
         public string text { get; set; }
+        public Nullable<System.DateTime> date { get; set; }
     
         public virtual application_types application_types { get; set; }
         public virtual users users { get; set; }
