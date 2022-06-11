@@ -387,29 +387,29 @@ namespace DeliveryApp
         // couriers button
         private void buttonCouriers_Click(object sender, EventArgs e)
         {
-            FormsHelper.openForm(this, new AdminChartCouriers(_user));
+            FormsHelper.openForm(this, new AdminChartUsers(_user));
         }
-    }
 
-    enum DateType
-    {
-        AllTime,
-        Year,
-        Month
-    }
-
-    class ChartObject
-    {
-        private int _key;
-        private int _value;
-
-        public ChartObject(int key, int value)
+        private enum DateType
         {
-            _key = key;
-            _value = value;
+            AllTime,
+            Year,
+            Month
         }
 
-        public int Value { get => _value; }
-        public int Key { get => _key; }
+        private class ChartObject
+        {
+            private int _key;
+            private int _value;
+
+            public ChartObject(int key, int value)
+            {
+                _key = key;
+                _value = value;
+            }
+
+            public int Value { get => _value; }
+            public int Key { get => _key; }
+        }
     }
 }

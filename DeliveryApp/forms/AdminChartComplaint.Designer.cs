@@ -78,7 +78,7 @@
             this.buttonCouriers.Name = "buttonCouriers";
             this.buttonCouriers.Size = new System.Drawing.Size(149, 79);
             this.buttonCouriers.TabIndex = 10;
-            this.buttonCouriers.Text = "Курьеры";
+            this.buttonCouriers.Text = "Пользователи";
             this.buttonCouriers.UseVisualStyleBackColor = true;
             this.buttonCouriers.Click += new System.EventHandler(this.buttonCouriers_Click);
             // 

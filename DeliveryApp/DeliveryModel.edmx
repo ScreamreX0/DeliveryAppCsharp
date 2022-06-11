@@ -202,6 +202,7 @@
           <Property Name="login" Type="varchar" MaxLength="255" />
           <Property Name="password" Type="varchar" MaxLength="255" />
           <Property Name="role" Type="int" />
+          <Property Name="registration_date" Type="datetime" />
         </EntityType>
         <Association Name="FK__applicati__sende__3C34F16F">
           <End Role="users" Type="Self.users" Multiplicity="0..1" />
@@ -929,6 +930,7 @@
           <NavigationProperty Name="credit_cards" Relationship="Self.FK__credit_ca__owner__60A75C0F" FromRole="users" ToRole="credit_cards" />
           <NavigationProperty Name="orders" Relationship="Self.FK__orders__customer__46E78A0C" FromRole="users" ToRole="orders" />
           <NavigationProperty Name="roles" Relationship="Self.FK__users__role__76969D2E" FromRole="users" ToRole="roles" />
+          <Property Name="registration_date" Type="DateTime" Precision="3" />
         </EntityType>
         <Association Name="FK__applicatio__type__40058253">
           <End Role="application_types" Type="Self.application_types" Multiplicity="0..1" />
@@ -1627,6 +1629,7 @@
           <EntitySetMapping Name="users">
             <EntityTypeMapping TypeName="DeliveryModel.users">
               <MappingFragment StoreEntitySet="users">
+                <ScalarProperty Name="registration_date" ColumnName="registration_date" />
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="first_name" ColumnName="first_name" />
                 <ScalarProperty Name="last_name" ColumnName="last_name" />
