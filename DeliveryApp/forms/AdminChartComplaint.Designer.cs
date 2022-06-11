@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             this.chartComplaints = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.buttonBack = new System.Windows.Forms.Button();
             this.buttonCouriers = new System.Windows.Forms.Button();
@@ -44,7 +44,6 @@
             this.buttonRight = new System.Windows.Forms.Button();
             this.buttonColumn = new System.Windows.Forms.Button();
             this.buttonGraph = new System.Windows.Forms.Button();
-            this.buttonPie = new System.Windows.Forms.Button();
             this.infoTextBox = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.chartComplaints)).BeginInit();
@@ -53,10 +52,10 @@
             // 
             // chartComplaints
             // 
-            chartArea1.Name = "ChartArea1";
-            this.chartComplaints.ChartAreas.Add(chartArea1);
-            legend1.Name = "Legend1";
-            this.chartComplaints.Legends.Add(legend1);
+            chartArea2.Name = "ChartArea1";
+            this.chartComplaints.ChartAreas.Add(chartArea2);
+            legend2.Name = "Legend1";
+            this.chartComplaints.Legends.Add(legend2);
             this.chartComplaints.Location = new System.Drawing.Point(301, 9);
             this.chartComplaints.Name = "chartComplaints";
             this.chartComplaints.Size = new System.Drawing.Size(434, 395);
@@ -183,7 +182,7 @@
             // 
             this.buttonColumn.Location = new System.Drawing.Point(301, 410);
             this.buttonColumn.Name = "buttonColumn";
-            this.buttonColumn.Size = new System.Drawing.Size(144, 23);
+            this.buttonColumn.Size = new System.Drawing.Size(217, 23);
             this.buttonColumn.TabIndex = 20;
             this.buttonColumn.Text = "Гистограмма";
             this.buttonColumn.UseVisualStyleBackColor = true;
@@ -191,23 +190,13 @@
             // 
             // buttonGraph
             // 
-            this.buttonGraph.Location = new System.Drawing.Point(451, 410);
+            this.buttonGraph.Location = new System.Drawing.Point(524, 410);
             this.buttonGraph.Name = "buttonGraph";
-            this.buttonGraph.Size = new System.Drawing.Size(134, 23);
+            this.buttonGraph.Size = new System.Drawing.Size(211, 23);
             this.buttonGraph.TabIndex = 21;
             this.buttonGraph.Text = "График";
             this.buttonGraph.UseVisualStyleBackColor = true;
             this.buttonGraph.Click += new System.EventHandler(this.buttonGraph_Click);
-            // 
-            // buttonPie
-            // 
-            this.buttonPie.Location = new System.Drawing.Point(591, 410);
-            this.buttonPie.Name = "buttonPie";
-            this.buttonPie.Size = new System.Drawing.Size(144, 23);
-            this.buttonPie.TabIndex = 22;
-            this.buttonPie.Text = "Круговая";
-            this.buttonPie.UseVisualStyleBackColor = true;
-            this.buttonPie.Click += new System.EventHandler(this.buttonPie_Click);
             // 
             // infoTextBox
             // 
@@ -236,7 +225,6 @@
             this.ClientSize = new System.Drawing.Size(760, 449);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.infoTextBox);
-            this.Controls.Add(this.buttonPie);
             this.Controls.Add(this.buttonGraph);
             this.Controls.Add(this.buttonColumn);
             this.Controls.Add(this.buttonRight);
@@ -274,7 +262,6 @@
         private System.Windows.Forms.Button buttonRight;
         private System.Windows.Forms.Button buttonColumn;
         private System.Windows.Forms.Button buttonGraph;
-        private System.Windows.Forms.Button buttonPie;
         private System.Windows.Forms.TextBox infoTextBox;
         private System.Windows.Forms.Label label1;
     }

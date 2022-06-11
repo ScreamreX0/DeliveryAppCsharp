@@ -19,26 +19,26 @@ namespace DeliveryApp
         public AdminChartOrders(users _user)
         {
             InitializeComponent();
+            init();
 
             this._user = _user;
 
-            init();
-
             loadChart(DateType.Day);
-            fillInfoTextBox();
         }
 
         private void init() 
         { 
             buttonOrders.Enabled = false;
+            dateTimePicker.Value = DateTime.Now;
         }
 
+        // Major
         private void loadChart(DateType dateType)
         {
             List<OrderHistoryObject> ordersHistoryList = getOrdersHistory();
             List<OrderHistoryObject> filteredOrders = new List<OrderHistoryObject>();
 
-            // setting chart
+            // chart settings
             chartOrders.Series.Clear();
             chartOrders.Series.Add("Заказы");
             chartOrders.Series["Заказы"].ChartType = _chartType;
@@ -88,22 +88,16 @@ namespace DeliveryApp
             fillChart(getGroupedOrders(filteredOrders, dateType));
         }
 
-        private void fillInfoTextBox()
-        {
-
-        }
-
+        
+        // Chart filling helper
         private void fillChart(List<OrderHistoryGroupedObject> groupedOrders)
         {
             foreach (OrderHistoryGroupedObject orderHistory in groupedOrders)
             {
-                chartOrders
-                    .Series["Заказы"]
-                    .Points
-                    .AddXY(orderHistory.Key, orderHistory.Value);
+                chartOrders.Series["Заказы"].Points.AddXY(orderHistory.Key, orderHistory.Value);
             }
         }
-
+        
         private List<OrderHistoryGroupedObject> getGroupedOrders(
             List<OrderHistoryObject> ordersList,
             DateType dateType)
@@ -112,18 +106,8 @@ namespace DeliveryApp
             {
                 List<string> months = new List<string>
                 {
-                    "Январь",
-                    "Февраль",
-                    "Март",
-                    "Апрель",
-                    "Май",
-                    "Июнь",
-                    "Июль",
-                    "Август",
-                    "Сентябрь",
-                    "Октябрь",
-                    "Ноябрь",
-                    "Декабрь"
+                    "Январь", "Февраль", "Март", "Апрель", "Май", "Июнь",
+                    "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь", "Декабрь"
                 };
                 return ordersList
                     .GroupBy(param => param.time.Value.Month)
@@ -176,20 +160,111 @@ namespace DeliveryApp
             return ordersHistoryList;
         }
 
+
+        // UI
+        // back btn clicked
         private void buttonBack_Click(object sender, EventArgs e)
         {
             FormsHelper.openForm(this, new AdminMenu(_user));
         }
 
+        // complaints btn clicked
         private void buttonComplaints_Click(object sender, EventArgs e)
         {
             FormsHelper.openForm(this, new AdminChartComplaint(_user));
         }
 
+        // couriers btn clicked
         private void buttonCouriers_Click(object sender, EventArgs e)
         {
             FormsHelper.openForm(this, new AdminChartUsers(_user));
         }
+
+        // all time rb
+        private void radioButtonAllTime_CheckedChanged(object sender, EventArgs e)
+        {
+            dateTimePicker.Enabled = false;
+            loadChart(DateType.AllTime);
+        }
+
+        // year rb
+        private void radioButtonYear_CheckedChanged(object sender, EventArgs e)
+        {
+            dateTimePicker.CustomFormat = "yyyy";
+            loadChart(DateType.Year);
+            dateTimePicker.Enabled = true;
+        }
+
+        // month rb
+        private void radioButtonMonth_CheckedChanged(object sender, EventArgs e)
+        {
+            dateTimePicker.CustomFormat = "yyyy-MM";
+            loadChart(DateType.Month);
+            dateTimePicker.Enabled = true;
+        }
+
+        // day rb
+        private void radioButtonDay_CheckedChanged(object sender, EventArgs e)
+        {
+            dateTimePicker.CustomFormat = "yyyy-MM-dd";
+            loadChart(DateType.Day);
+            dateTimePicker.Enabled = true;
+        }
+
+        // time pckr changed
+        private void dateTimePicker_ValueChanged(object sender, EventArgs e)
+        {
+            if (radioButtonAllTime.Checked)
+            {
+                loadChart(DateType.AllTime);
+            }
+            else if (radioButtonMonth.Checked)
+            {
+                loadChart(DateType.Month);
+            }
+            else if (radioButtonYear.Checked)
+            {
+                loadChart(DateType.Year);
+            }
+            else if (radioButtonDay.Checked)
+            {
+                loadChart(DateType.Day);
+            }
+        }
+
+        // left btn clicked
+        private void buttonLeft_Click(object sender, EventArgs e)
+        {
+            moveDate(-1);
+        }
+
+        // right btn clicked
+        private void buttonRight_Click(object sender, EventArgs e)
+        {
+            moveDate(1);
+        }
+
+
+        // UI helper
+        private void moveDate(int direction)
+        {
+            if (radioButtonYear.Checked)
+            {
+                dateTimePicker.Value = dateTimePicker.Value.AddYears(direction);
+                loadChart(DateType.Year);
+            }
+            else if (radioButtonMonth.Checked)
+            {
+                dateTimePicker.Value = dateTimePicker.Value.AddMonths(direction);
+                loadChart(DateType.Month);
+            }
+            else if (radioButtonDay.Checked)
+            {
+                dateTimePicker.Value = dateTimePicker.Value.AddDays(direction);
+                loadChart(DateType.Day);
+            }
+        }
+
 
         private enum DateType
         {
@@ -220,17 +295,17 @@ namespace DeliveryApp
 
             public OrderHistoryObject(
                 int orderHistoryId,
-                int customerId, 
-                int? courierId, 
-                int? issuePoint, 
-                DateTime? time, 
-                DateTime? takenDate, 
-                DateTime? arriveDate, 
-                string comment, 
-                string paymentMethod, 
-                int? cartId, 
-                int? transportId, 
-                double? totalSum, 
+                int customerId,
+                int? courierId,
+                int? issuePoint,
+                DateTime? time,
+                DateTime? takenDate,
+                DateTime? arriveDate,
+                string comment,
+                string paymentMethod,
+                int? cartId,
+                int? transportId,
+                double? totalSum,
                 double? rating)
             {
                 this.orderHistoryId = orderHistoryId;
@@ -262,89 +337,6 @@ namespace DeliveryApp
 
             public int Value { get => _value; }
             public string Key { get => _key; }
-        }
-
-        private void radioButtonAllTime_CheckedChanged(object sender, EventArgs e)
-        {
-            dateTimePicker.Enabled = false;
-            loadChart(DateType.AllTime);
-        }
-
-        private void radioButtonYear_CheckedChanged(object sender, EventArgs e)
-        {
-            dateTimePicker.CustomFormat = "yyyy";
-            loadChart(DateType.Year);
-            dateTimePicker.Enabled = true;
-            fillInfoTextBox();
-        }
-
-        private void radioButtonMonth_CheckedChanged(object sender, EventArgs e)
-        {
-            dateTimePicker.CustomFormat = "yyyy-MM";
-            loadChart(DateType.Month);
-            dateTimePicker.Enabled = true;
-            fillInfoTextBox();
-        }
-
-        private void radioButtonDay_CheckedChanged(object sender, EventArgs e)
-        {
-            dateTimePicker.CustomFormat = "yyyy-MM-dd";
-            loadChart(DateType.Day);
-            dateTimePicker.Enabled = true;
-            fillInfoTextBox();
-        }
-
-        private void dateTimePicker_ValueChanged(object sender, EventArgs e)
-        {
-            if (radioButtonAllTime.Checked)
-            {
-                loadChart(DateType.AllTime);
-            }
-            else if (radioButtonMonth.Checked)
-            {
-                loadChart(DateType.Month);
-            }
-            else if (radioButtonYear.Checked)
-            {
-                loadChart(DateType.Year);
-            }
-            else if (radioButtonDay.Checked)
-            {
-                loadChart(DateType.Day);
-            }
-            fillInfoTextBox();
-        }
-
-        private void buttonLeft_Click(object sender, EventArgs e)
-        {
-            moveDate(-1);
-        }
-
-        private void buttonRight_Click(object sender, EventArgs e)
-        {
-            moveDate(1);
-        }
-
-        private void moveDate(int direction)
-        {
-            if (radioButtonYear.Checked)
-            {
-                dateTimePicker.Value = dateTimePicker.Value.AddYears(direction);
-                loadChart(DateType.Year);
-                fillInfoTextBox();
-            }
-            else if (radioButtonMonth.Checked)
-            {
-                dateTimePicker.Value = dateTimePicker.Value.AddMonths(direction);
-                loadChart(DateType.Month);
-                fillInfoTextBox();
-            }
-            else if (radioButtonDay.Checked)
-            {
-                dateTimePicker.Value = dateTimePicker.Value.AddDays(direction);
-                loadChart(DateType.Day);
-                fillInfoTextBox();
-            }
         }
     }
 }

@@ -19,12 +19,11 @@ namespace DeliveryApp
         public AdminChartUsers(users _user)
         {
             InitializeComponent();
+            init();
 
             this._user = _user;
-
-            init();
+            
             loadChart(DateType.AllTime);
-            fillInfoTextBox();
         }
 
         private void init()
@@ -34,130 +33,138 @@ namespace DeliveryApp
             buttonUsers.Enabled = false;
         }
 
+        // Major
         private void loadChart(DateType dateType)
         {
-            // setting chart
             chartUsers.Series.Clear();
             chartUsers.Series.Add("Пользователи");
             chartUsers.Series["Пользователи"].ChartType = _chartType;
-            chartUsers.Series["Пользователи"].IsValueShownAsLabel = false;
             chartUsers.Series["Пользователи"].EmptyPointStyle.IsVisibleInLegend = false;
-
-            if (_chartType == SeriesChartType.Pie)
-            {
-                chartUsers.Series["Пользователи"].IsVisibleInLegend = !radioButtonMonth.Checked;
-            }
-            else
-            {
-                chartUsers.Series["Пользователи"].IsVisibleInLegend = false;
-            }
 
             if (dateType == DateType.Year)
             {
-                // usersList filling
-                List<users> usersList = _deliveryEntities
-                    .users
-                    .ToList()
-                    .FindAll(param => param.registration_date.Value.Year == dateTimePicker.Value.Year);
-
-                // info filling
-                List<string> months = new List<string>
-                {
-                    "Январь",
-                    "Февраль",
-                    "Март",
-                    "Апрель",
-                    "Май",
-                    "Июнь",
-                    "Июль",
-                    "Август",
-                    "Сентябрь",
-                    "Октябрь",
-                    "Ноябрь",
-                    "Декабрь"
-                };
-                List<ChartObject> filteredUsers = getGroupedUsers(usersList, DateType.Year);
-                for (int i = 0; i < months.Count; i++)
-                {
-                    ChartObject chartObject = null;
-                    foreach (ChartObject chartObj in filteredUsers)
-                    {
-                        if (chartObj.Key - 1 == i)
-                        {
-                            chartObject = chartObj;
-                            break;
-                        }
-                    }
-
-                    // month is empty (no users)
-                    if (chartObject == null)
-                    {
-                        chartUsers.Series["Пользователи"].Points.AddXY(months[i], 0);
-                        continue;
-                    }
-
-                    chartUsers
-                        .Series["Пользователи"]
-                        .Points
-                        .AddXY(months[i], chartObject.Value);
-                }
+                chartSetYear();
             }
             else if (dateType == DateType.Month)
             {
-                // usersList filling
-                List<users> usersList = _deliveryEntities
-                    .users
-                    .ToList()
-                    .FindAll(param => param.registration_date.Value.Year == dateTimePicker.Value.Year
-                        && param.registration_date.Value.Month == dateTimePicker.Value.Month);
-
-                // info filling
-                List<ChartObject> filteredUsers = getGroupedUsers(usersList, DateType.Month);
-                int daysInSelectedMonth = DateTime.DaysInMonth(dateTimePicker.Value.Year, dateTimePicker.Value.Month);
-                for (int i = 0; i < daysInSelectedMonth; i++)
-                {
-                    ChartObject chartObject = null;
-                    foreach (ChartObject chartObj in filteredUsers)
-                    {
-                        if (chartObj.Key - 1 == i)
-                        {
-                            chartObject = chartObj;
-                            break;
-                        }
-                    }
-
-                    // month is empty (no users)
-                    if (chartObject == null)
-                    {
-                        chartUsers.Series["Пользователи"].Points.AddXY(i, 0);
-                        continue;
-                    }
-
-                    chartUsers
-                        .Series["Пользователи"]
-                        .Points
-                        .AddXY(i, chartObject.Value);
-                }
+                chartSetMonth();
             }
             else
             {
-                // usersList filling
-                List<users> usersList = _deliveryEntities
-                    .users
-                    .ToList();
-
-                // info filling
-                List<ChartObject> filteredUsers = getGroupedUsers(usersList, DateType.AllTime);
-                for (int i = 0; i < filteredUsers.Count; i++)
-                {
-                    chartUsers
-                        .Series["Пользователи"]
-                        .Points
-                        .AddXY(filteredUsers[i].Key, filteredUsers[i].Value);
-                }
+                chartSetAllTime();
             }
         }
 
+        private void updateChart()
+        {
+            if (radioButtonYear.Checked)
+            {
+                loadChart(DateType.Year);
+            }
+            else if (radioButtonMonth.Checked)
+            {
+                loadChart(DateType.Month);
+            }
+            else
+            {
+                loadChart(DateType.AllTime);
+            }
+        }
+
+
+        // Chart sets
+        private void chartSetAllTime()
+        {
+            // usersList filling
+            List<users> usersList = _deliveryEntities
+                .users
+                .ToList();
+
+            // info filling
+            List<ChartObject> filteredUsers = getGroupedUsers(usersList, DateType.AllTime);
+            for (int i = 0; i < filteredUsers.Count; i++)
+            {
+                chartUsers
+                    .Series["Пользователи"]
+                    .Points
+                    .AddXY(filteredUsers[i].Key, filteredUsers[i].Value);
+            }
+        }
+
+        private void chartSetYear()
+        {
+            List<users> usersList = _deliveryEntities.users.ToList().FindAll(
+                param => param.registration_date.Value.Year == dateTimePicker.Value.Year);
+
+            List<string> months = new List<string>
+            {
+                "Январь", "Февраль", "Март", "Апрель", "Май", "Июнь",
+                "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь", "Декабрь"
+            };
+
+            List<ChartObject> filteredUsers = getGroupedUsers(usersList, DateType.Year);
+            for (int i = 0; i < months.Count; i++)
+            {
+                ChartObject chartObject = null;
+                foreach (ChartObject chartObj in filteredUsers)
+                {
+                    if (chartObj.Key - 1 == i)
+                    {
+                        chartObject = chartObj;
+                        break;
+                    }
+                }
+
+                // month is empty (no users)
+                if (chartObject == null)
+                {
+                    chartUsers.Series["Пользователи"].Points.AddXY(months[i], 0);
+                    continue;
+                }
+
+                chartUsers
+                    .Series["Пользователи"]
+                    .Points
+                    .AddXY(months[i], chartObject.Value);
+            }
+        }
+
+        private void chartSetMonth()
+        {
+            List<users> usersList = _deliveryEntities.users.ToList().FindAll(
+                param => param.registration_date.Value.Year == dateTimePicker.Value.Year
+                && param.registration_date.Value.Month == dateTimePicker.Value.Month);
+
+            List<ChartObject> filteredUsers = getGroupedUsers(usersList, DateType.Month);
+            int daysInSelectedMonth = DateTime.DaysInMonth(dateTimePicker.Value.Year, dateTimePicker.Value.Month);
+            for (int i = 0; i < daysInSelectedMonth; i++)
+            {
+                ChartObject chartObject = null;
+                foreach (ChartObject chartObj in filteredUsers)
+                {
+                    if (chartObj.Key - 1 == i)
+                    {
+                        chartObject = chartObj;
+                        break;
+                    }
+                }
+
+                // month is empty (no users)
+                if (chartObject == null)
+                {
+                    chartUsers.Series["Пользователи"].Points.AddXY(i, 0);
+                    continue;
+                }
+
+                chartUsers
+                    .Series["Пользователи"]
+                    .Points
+                    .AddXY(i, chartObject.Value);
+            }
+        }
+
+
+        // Chart sets helper
         private List<ChartObject> getGroupedUsers(List<users> usersList, DateType dateType)
         {
             if (dateType == DateType.Year)
@@ -181,139 +188,62 @@ namespace DeliveryApp
                     .ToList();
         }
 
-        private void updateChart()
-        {
-            if (radioButtonYear.Checked)
-            {
-                loadChart(DateType.Year);
-            }
-            else if (radioButtonMonth.Checked)
-            {
-                loadChart(DateType.Month);
-            }
-            else
-            {
-                loadChart(DateType.AllTime);
-            }
-        }
 
+        // UI
+        // back btn clicked
         private void buttonBack_Click(object sender, EventArgs e)
         {
             FormsHelper.openForm(this, new AdminMenu(_user));
         }
 
+        // complaints btn clicked
         private void buttonComplaints_Click(object sender, EventArgs e)
         {
             FormsHelper.openForm(this, new AdminChartComplaint(_user));
         }
 
+        // orders btn clicked
         private void buttonOrders_Click(object sender, EventArgs e)
         {
             FormsHelper.openForm(this, new AdminChartOrders(_user));
         }
 
+        // all time rb
         private void radioButtonAllTime_CheckedChanged(object sender, EventArgs e)
         {
             dateTimePicker.Enabled = false;
             loadChart(DateType.AllTime);
         }
 
+        // year rb
         private void radioButtonYear_CheckedChanged(object sender, EventArgs e)
         {
             dateTimePicker.CustomFormat = "yyyy";
             loadChart(DateType.Year);
             dateTimePicker.Enabled = true;
-            fillInfoTextBox();
         }
 
+        // month rb
         private void radioButtonMonth_CheckedChanged(object sender, EventArgs e)
         {
             dateTimePicker.CustomFormat = "yyyy-MM";
             loadChart(DateType.Month);
             dateTimePicker.Enabled = true;
-            fillInfoTextBox();
         }
 
-        private void moveDate(int direction)
-        {
-            if (radioButtonYear.Checked)
-            {
-                dateTimePicker.Value = dateTimePicker.Value.AddYears(direction);
-                loadChart(DateType.Year);
-                fillInfoTextBox();
-            }
-            else if (radioButtonMonth.Checked)
-            {
-                dateTimePicker.Value = dateTimePicker.Value.AddMonths(direction);
-                loadChart(DateType.Month);
-                fillInfoTextBox();
-            }
-        }
-
-        private void fillInfoTextBox()
-        {
-            /*string content = "";
-            List<applications> applicationsList = _deliveryEntities.applications.ToList();
-
-            content += $"Все время: {applicationsList.Count()}\n";
-
-            // current year
-            int currentYearCount = applicationsList
-                .FindAll(param => param.date.Value.Year == DateTime.Now.Year)
-                .Count;
-            content += $"Текущий год: {currentYearCount}\n";
-
-            // current month
-            int currentMonthCount = applicationsList
-                .FindAll(param => param.date.Value.Year == DateTime.Now.Year
-                    && param.date.Value.Month == DateTime.Now.Month)
-                .Count;
-            content += $"Текущий месяц: {currentMonthCount}\n";
-
-            // current day
-            int currentDayCount = applicationsList
-                .FindAll(param => param.date.Value.Year == DateTime.Now.Year
-                    && param.date.Value.Month == DateTime.Now.Month
-                    && param.date.Value.Day == DateTime.Now.Day)
-                .Count;
-            content += $"Сегодняшний день: {currentDayCount}\n";
-
-            if (!radioButtonAllTime.Checked)
-            {
-                // selected year
-                int selectedYearCount = applicationsList
-                    .FindAll(param => param.date.Value.Year == dateTimePicker.Value.Year)
-                    .Count;
-                content += $"Выбранный год: {selectedYearCount}\n";
-
-                // selected month
-                int selectedMonthCount = applicationsList
-                    .FindAll(param => param.date.Value.Year == dateTimePicker.Value.Year
-                        && param.date.Value.Month == dateTimePicker.Value.Month)
-                    .Count;
-                content += $"Выбранный месяц: {selectedMonthCount}\n";
-            }
-
-            infoTextBox.Text = content;*/
-        }
-
-        enum DateType
-        {
-            AllTime,
-            Year,
-            Month
-        }
-
+        // left btn clicked
         private void buttonLeft_Click(object sender, EventArgs e)
         {
             moveDate(-1);
         }
 
+        // right btn clicked
         private void buttonRight_Click(object sender, EventArgs e)
         {
             moveDate(1);
         }
 
+        // time pckr changed
         private void dateTimePicker_ValueChanged(object sender, EventArgs e)
         {
             if (radioButtonAllTime.Checked)
@@ -328,7 +258,30 @@ namespace DeliveryApp
             {
                 loadChart(DateType.Year);
             }
-            fillInfoTextBox();
+        }
+
+
+        // UI helper
+        private void moveDate(int direction)
+        {
+            if (radioButtonYear.Checked)
+            {
+                dateTimePicker.Value = dateTimePicker.Value.AddYears(direction);
+                loadChart(DateType.Year);
+            }
+            else if (radioButtonMonth.Checked)
+            {
+                dateTimePicker.Value = dateTimePicker.Value.AddMonths(direction);
+                loadChart(DateType.Month);
+            }
+        }
+
+
+        enum DateType
+        {
+            AllTime,
+            Year,
+            Month
         }
 
         private class ChartObject

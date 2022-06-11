@@ -31,7 +31,6 @@
             System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
             System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             this.label1 = new System.Windows.Forms.Label();
-            this.infoTextBox = new System.Windows.Forms.TextBox();
             this.buttonGraph = new System.Windows.Forms.Button();
             this.buttonColumn = new System.Windows.Forms.Button();
             this.buttonRight = new System.Windows.Forms.Button();
@@ -59,16 +58,6 @@
             this.label1.Size = new System.Drawing.Size(139, 24);
             this.label1.TabIndex = 38;
             this.label1.Text = "Пользователи";
-            // 
-            // infoTextBox
-            // 
-            this.infoTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.infoTextBox.Location = new System.Drawing.Point(173, 313);
-            this.infoTextBox.Multiline = true;
-            this.infoTextBox.Name = "infoTextBox";
-            this.infoTextBox.ReadOnly = true;
-            this.infoTextBox.Size = new System.Drawing.Size(122, 91);
-            this.infoTextBox.TabIndex = 37;
             // 
             // buttonGraph
             // 
@@ -176,10 +165,10 @@
             this.buttonBack.UseVisualStyleBackColor = true;
             this.buttonBack.Click += new System.EventHandler(this.buttonBack_Click);
             // 
-            // buttonCouriers
+            // buttonUsers
             // 
             this.buttonUsers.Location = new System.Drawing.Point(16, 279);
-            this.buttonUsers.Name = "buttonCouriers";
+            this.buttonUsers.Name = "buttonUsers";
             this.buttonUsers.Size = new System.Drawing.Size(149, 79);
             this.buttonUsers.TabIndex = 28;
             this.buttonUsers.Text = "Пользователи";
@@ -222,7 +211,6 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(760, 449);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.infoTextBox);
             this.Controls.Add(this.buttonGraph);
             this.Controls.Add(this.buttonColumn);
             this.Controls.Add(this.buttonRight);
@@ -247,7 +235,6 @@
         #endregion
 
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox infoTextBox;
         private System.Windows.Forms.Button buttonGraph;
         private System.Windows.Forms.Button buttonColumn;
         private System.Windows.Forms.Button buttonRight;
