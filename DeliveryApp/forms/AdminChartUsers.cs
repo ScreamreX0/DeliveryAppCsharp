@@ -55,22 +55,6 @@ namespace DeliveryApp
             }
         }
 
-        private void updateChart()
-        {
-            if (radioButtonYear.Checked)
-            {
-                loadChart(DateType.Year);
-            }
-            else if (radioButtonMonth.Checked)
-            {
-                loadChart(DateType.Month);
-            }
-            else
-            {
-                loadChart(DateType.AllTime);
-            }
-        }
-
 
         // Chart sets
         private void chartSetAllTime()
@@ -260,6 +244,29 @@ namespace DeliveryApp
             }
         }
 
+        private void buttonColumn_Click(object sender, EventArgs e)
+        {
+            changeDiagramType(SeriesChartType.Column);
+            updateChart();
+        }
+
+        private void buttonGraph_Click(object sender, EventArgs e)
+        {
+            changeDiagramType(SeriesChartType.Area);
+            updateChart();
+        }
+
+        private void buttonSpline_Click(object sender, EventArgs e)
+        {
+            changeDiagramType(SeriesChartType.SplineArea);
+            updateChart();
+        }
+
+        private void buttonPoint_Click(object sender, EventArgs e)
+        {
+            changeDiagramType(SeriesChartType.Point);
+            updateChart();
+        }
 
         // UI helper
         private void moveDate(int direction)
@@ -274,6 +281,29 @@ namespace DeliveryApp
                 dateTimePicker.Value = dateTimePicker.Value.AddMonths(direction);
                 loadChart(DateType.Month);
             }
+        }
+
+        private void updateChart()
+        {
+            if (radioButtonYear.Checked)
+            {
+                loadChart(DateType.Year);
+            }
+            else if (radioButtonMonth.Checked)
+            {
+                loadChart(DateType.Month);
+            }
+            else
+            {
+                loadChart(DateType.AllTime);
+            }
+        }
+
+        // change diagram type
+        private void changeDiagramType(SeriesChartType type)
+        {
+            _chartType = type;
+            updateChart();
         }
 
 
@@ -298,5 +328,7 @@ namespace DeliveryApp
             public int Value { get => _value; }
             public int Key { get => _key; }
         }
+
+        
     }
 }

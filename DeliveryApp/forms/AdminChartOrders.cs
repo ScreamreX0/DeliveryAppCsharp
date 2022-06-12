@@ -244,6 +244,30 @@ namespace DeliveryApp
             moveDate(1);
         }
 
+        private void buttonColumn_Click(object sender, EventArgs e)
+        {
+            changeDiagramType(SeriesChartType.Column);
+            updateChart();
+        }
+
+        private void buttonGraph_Click(object sender, EventArgs e)
+        {
+            changeDiagramType(SeriesChartType.Area);
+            updateChart();
+        }
+
+        private void buttonSpline_Click(object sender, EventArgs e)
+        {
+            changeDiagramType(SeriesChartType.SplineArea);
+            updateChart();
+        }
+
+        private void buttonPoint_Click(object sender, EventArgs e)
+        {
+            changeDiagramType(SeriesChartType.Point);
+            updateChart();
+        }
+
 
         // UI helper
         private void moveDate(int direction)
@@ -264,6 +288,34 @@ namespace DeliveryApp
                 loadChart(DateType.Day);
             }
         }
+
+        private void updateChart()
+        {
+            if (radioButtonYear.Checked)
+            {
+                loadChart(DateType.Year);
+            }
+            else if (radioButtonMonth.Checked)
+            {
+                loadChart(DateType.Month);
+            }
+            else if (radioButtonDay.Checked)
+            {
+                loadChart(DateType.Day);
+            }
+            else
+            {
+                loadChart(DateType.AllTime);
+            }
+        }
+
+        // change diagram type
+        private void changeDiagramType(SeriesChartType type)
+        {
+            _chartType = type;
+            updateChart();
+        }
+
 
 
         private enum DateType
@@ -338,5 +390,7 @@ namespace DeliveryApp
             public int Value { get => _value; }
             public string Key { get => _key; }
         }
+
+        
     }
 }

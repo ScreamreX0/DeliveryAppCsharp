@@ -336,6 +336,16 @@ namespace DeliveryApp
             changeDiagramType(SeriesChartType.Spline);
         }
 
+        private void buttonSpline_Click(object sender, EventArgs e)
+        {
+            changeDiagramType(SeriesChartType.SplineArea);
+        }
+
+        private void buttonPoint_Click(object sender, EventArgs e)
+        {
+            changeDiagramType(SeriesChartType.Point);
+        }
+
         // back button
         private void buttonBack_Click(object sender, EventArgs e)
         {
@@ -402,5 +412,7 @@ namespace DeliveryApp
             public int Value { get => _value; }
             public int Key { get => _key; }
         }
+
+        
     }
 }
